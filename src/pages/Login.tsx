@@ -47,24 +47,24 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 transition-colors duration-500">
+    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-md w-full bg-white dark:bg-slate-900 p-8 md:p-10 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none transition-colors duration-500"
+        className="max-w-md w-full bg-white p-8 md:p-10 rounded-[2.5rem] border border-gray-100 shadow-xl"
       >
         <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-indigo-50 dark:bg-indigo-900/20 rounded-3xl flex items-center justify-center mx-auto mb-6 transition-colors duration-500">
+          <div className="w-20 h-20 bg-indigo-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
             {isRegister ? (
-              <UserPlus className="w-10 h-10 text-indigo-600 dark:text-indigo-400" />
+              <UserPlus className="w-10 h-10 text-indigo-600" />
             ) : (
-              <LogIn className="w-10 h-10 text-indigo-600 dark:text-indigo-400" />
+              <LogIn className="w-10 h-10 text-indigo-600" />
             )}
           </div>
-          <h1 className="text-3xl font-black text-slate-900 dark:text-slate-50 mb-2">
+          <h1 className="text-3xl font-black text-gray-900 mb-2">
             {isRegister ? 'Create Account' : 'Welcome Back'}
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 font-medium">
+          <p className="text-gray-500 font-medium">
             {isRegister 
               ? 'Join Pixi Marts today and start shopping.' 
               : 'Sign in to manage your orders and profile.'}
@@ -72,7 +72,7 @@ const Login: React.FC = () => {
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800/30 rounded-2xl flex items-center gap-3 text-red-600 dark:text-red-400 text-sm font-medium transition-colors duration-500">
+          <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3 text-red-600 text-sm font-medium">
             <AlertCircle className="w-5 h-5 flex-shrink-0" />
             {error}
           </div>
@@ -81,46 +81,46 @@ const Login: React.FC = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {isRegister && (
             <div className="relative">
-              <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+              <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Full Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border border-transparent focus:border-indigo-500 focus:bg-white dark:focus:bg-slate-700 rounded-2xl outline-none transition-all font-medium text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-transparent focus:border-indigo-500 focus:bg-white rounded-2xl outline-none transition-all font-medium"
               />
             </div>
           )}
 
           <div className="relative">
-            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="email"
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border border-transparent focus:border-indigo-500 focus:bg-white dark:focus:bg-slate-700 rounded-2xl outline-none transition-all font-medium text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-500"
+              className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-transparent focus:border-indigo-500 focus:bg-white rounded-2xl outline-none transition-all font-medium"
             />
           </div>
 
           <div className="relative">
-            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border border-transparent focus:border-indigo-500 focus:bg-white dark:focus:bg-slate-700 rounded-2xl outline-none transition-all font-medium text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-500"
+              className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-transparent focus:border-indigo-500 focus:bg-white rounded-2xl outline-none transition-all font-medium"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none shadow-lg shadow-indigo-200 dark:shadow-none"
+            className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none shadow-lg shadow-indigo-200"
           >
             {loading ? (
               <div className="flex items-center justify-center gap-2">
@@ -139,17 +139,17 @@ const Login: React.FC = () => {
               setIsRegister(!isRegister);
               setError('');
             }}
-            className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline block w-full"
+            className="text-indigo-600 font-bold hover:underline block w-full"
           >
             {isRegister 
               ? 'Already have an account? Sign In' 
               : "Don't have an account? Create one"}
           </button>
 
-          <div className="pt-4 border-t border-slate-50 dark:border-slate-800 transition-colors duration-500">
+          <div className="pt-4 border-t border-gray-50">
             <button
               onClick={() => navigate('/admin')}
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all text-sm"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-gray-100 text-gray-500 font-bold hover:bg-gray-50 transition-all text-sm"
             >
               <ShieldCheck className="w-4 h-4" />
               Admin Login
@@ -157,7 +157,7 @@ const Login: React.FC = () => {
           </div>
         </div>
 
-        <p className="mt-8 text-xs text-slate-400 dark:text-slate-500 font-medium text-center">
+        <p className="mt-8 text-xs text-gray-400 font-medium text-center">
           By continuing, you agree to our Terms of Service and Privacy Policy.
         </p>
       </motion.div>

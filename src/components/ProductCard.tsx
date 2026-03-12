@@ -53,10 +53,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       whileHover={{ y: -5 }}
       onClick={() => navigate(`/product/${product.id}`)}
       className={cn(
-        "group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
+        "group bg-white/40 backdrop-blur-md border border-white/20 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
       )}
     >
-      <div className="relative aspect-square overflow-hidden bg-slate-100 dark:bg-slate-950">
+      <div className="relative aspect-square overflow-hidden bg-gray-100">
         {product.image && (
           <img
             src={product.image}
@@ -85,30 +85,30 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       <div className="p-2.5 relative z-10">
-        <h3 className="text-[11px] font-bold text-slate-900 dark:text-slate-50 mb-1 truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+        <h3 className="text-[11px] font-bold text-gray-900 mb-1 truncate group-hover:text-indigo-600 transition-colors">
           {product.title}
         </h3>
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-baseline gap-1.5">
-            <span className="text-sm font-black text-indigo-600 dark:text-indigo-400">
+            <span className="text-sm font-black text-indigo-600">
               {formatPrice(displaySalePrice)}
             </span>
             {displayRegularPrice > displaySalePrice && (
-              <span className="text-[10px] text-slate-400 dark:text-slate-500 line-through font-bold">
+              <span className="text-[10px] text-gray-400 line-through font-bold">
                 {formatPrice(displayRegularPrice)}
               </span>
             )}
           </div>
           <div className="flex items-center gap-0.5">
             <Star className="w-2 h-2 text-amber-400 fill-current" />
-            <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400">{Number(product.rating || 0).toFixed(1)}</span>
+            <span className="text-[9px] font-bold text-gray-500">{Number(product.rating || 0).toFixed(1)}</span>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-1">
           <button
             onClick={handleBuyNow}
-            className="col-span-2 bg-indigo-600 text-white py-1.5 rounded-lg text-[9px] font-bold hover:bg-indigo-700 dark:hover:bg-indigo-500 transition-all active:scale-95 flex items-center justify-center gap-1"
+            className="col-span-2 bg-indigo-600 text-white py-1.5 rounded-lg text-[9px] font-bold hover:bg-indigo-700 transition-all active:scale-95 flex items-center justify-center gap-1"
           >
             Buy Now
           </button>
@@ -118,14 +118,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               e.preventDefault();
               addToCart(product);
             }}
-            className="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-slate-700 dark:text-slate-200 py-1 rounded-lg text-[9px] font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all active:scale-95 flex items-center justify-center gap-1"
+            className="bg-white border border-gray-100 text-gray-700 py-1 rounded-lg text-[9px] font-bold hover:bg-gray-50 transition-all active:scale-95 flex items-center justify-center gap-1"
           >
             <ShoppingCart className="w-3 h-3" />
             Add
           </button>
           <button
             onClick={handleWhatsApp}
-            className="bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800/30 py-1 rounded-lg text-[9px] font-bold hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition-all active:scale-95 flex items-center justify-center gap-1"
+            className="bg-emerald-50 text-emerald-600 border border-emerald-100 py-1 rounded-lg text-[9px] font-bold hover:bg-emerald-100 transition-all active:scale-95 flex items-center justify-center gap-1"
           >
             <MessageCircle className="w-3 h-3" />
             Chat

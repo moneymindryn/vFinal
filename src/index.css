@@ -10,10 +10,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply antialiased bg-slate-50 text-slate-600 transition-colors duration-500;
-  }
-  .dark body {
-    @apply bg-slate-950 text-slate-400;
+    @apply antialiased;
   }
 }
 

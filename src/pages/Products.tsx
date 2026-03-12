@@ -48,20 +48,20 @@ const Products: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 transition-colors duration-500">
+    <div className="min-h-screen bg-slate-50 py-12 px-4">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Header & Search */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <h1 className="text-4xl font-black text-slate-900 dark:text-slate-50 mb-2">Explore Products</h1>
-            <p className="text-slate-500 dark:text-slate-400 font-medium">Discover our collection of premium digital assets.</p>
+            <h1 className="text-4xl font-black text-gray-900 mb-2">Explore Products</h1>
+            <p className="text-gray-500 font-medium">Discover our collection of premium digital assets.</p>
           </div>
           <div className="w-full md:w-96">
             <SearchBar value={searchTerm} onChange={setSearchTerm} />
@@ -70,8 +70,8 @@ const Products: React.FC = () => {
 
         {/* Categories Filter */}
         <div className="space-y-6">
-          <div className="flex items-center gap-2 text-slate-900 dark:text-slate-50 font-bold">
-            <Filter className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+          <div className="flex items-center gap-2 text-gray-900 font-bold">
+            <Filter className="w-5 h-5 text-indigo-600" />
             <span>Filter by Category</span>
           </div>
           <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
@@ -94,9 +94,9 @@ const Products: React.FC = () => {
         {/* Product Grid */}
         <div className="space-y-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50">
+            <h2 className="text-xl font-bold text-gray-900">
               {selectedCategory || 'All Products'}
-              <span className="ml-2 text-sm font-medium text-slate-400 dark:text-slate-500">({filteredProducts.length} items)</span>
+              <span className="ml-2 text-sm font-medium text-gray-400">({filteredProducts.length} items)</span>
             </h2>
           </div>
           
@@ -107,15 +107,15 @@ const Products: React.FC = () => {
               ))}
             </div>
           ) : (
-            <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-20 text-center border border-slate-100 dark:border-slate-800 shadow-sm">
-              <div className="bg-slate-50 dark:bg-slate-950 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-300 dark:text-slate-700">
+            <div className="bg-white rounded-[2.5rem] p-20 text-center border border-gray-100 shadow-sm">
+              <div className="bg-gray-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-300">
                 <LayoutGrid className="w-10 h-10" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-2">No products found</h3>
-              <p className="text-slate-500 dark:text-slate-400">Try adjusting your search or filter to find what you're looking for.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">No products found</h3>
+              <p className="text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
               <button 
                 onClick={() => { setSearchTerm(''); setSelectedCategory(null); }}
-                className="mt-8 text-indigo-600 dark:text-indigo-400 font-bold hover:underline"
+                className="mt-8 text-indigo-600 font-bold hover:underline"
               >
                 Clear all filters
               </button>

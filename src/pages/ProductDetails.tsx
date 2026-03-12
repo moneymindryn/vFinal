@@ -166,7 +166,7 @@ const ProductDetails: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
       </div>
     );
@@ -217,12 +217,12 @@ const ProductDetails: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 transition-colors duration-500">
+    <div className="min-h-screen bg-slate-50 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Back Button */}
         <button 
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-bold mb-8 transition-colors group"
+          className="flex items-center gap-2 text-gray-500 hover:text-indigo-600 font-bold mb-8 transition-colors group"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           Back to Products
@@ -233,7 +233,7 @@ const ProductDetails: React.FC = () => {
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="relative aspect-square rounded-[3rem] overflow-hidden bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800"
+            className="relative aspect-square rounded-[3rem] overflow-hidden bg-white shadow-xl shadow-gray-200/50 border border-gray-100"
           >
             {product.image && (
               <img 
@@ -260,13 +260,13 @@ const ProductDetails: React.FC = () => {
           >
             <div className="flex flex-wrap gap-2 mb-6">
               {product.categories.map(cat => (
-                <span key={cat} className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest">
+                <span key={cat} className="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest">
                   {cat}
                 </span>
               ))}
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-slate-50 mb-4 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
               {product.title}
             </h1>
 
@@ -281,29 +281,29 @@ const ProductDetails: React.FC = () => {
                           key={star} 
                           className={cn(
                             "w-4 h-4",
-                            star <= Math.round(avg) ? "text-amber-400 fill-current" : "text-slate-200 dark:text-slate-700"
+                            star <= Math.round(avg) ? "text-amber-400 fill-current" : "text-gray-200"
                           )} 
                         />
                       );
                     })}
                   </div>
-                  <span className="text-slate-900 dark:text-slate-50 font-black">
+                  <span className="text-gray-900 font-black">
                     {totalReviews > 0 ? averageRating : "No ratings yet"}
                   </span>
                 </div>
-                <div className="h-4 w-px bg-slate-200 dark:bg-slate-800"></div>
+                <div className="h-4 w-px bg-gray-200"></div>
                 <button 
                   onClick={() => {
                     setActiveTab('reviews');
                     document.getElementById('product-tabs')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="text-slate-500 dark:text-slate-400 font-bold hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  className="text-gray-500 font-bold hover:text-indigo-600 transition-colors"
                 >
                   {totalReviews} {totalReviews === 1 ? 'Review' : 'Reviews'}
                 </button>
               </div>
               
-              <div className="hidden sm:block h-4 w-px bg-slate-200 dark:bg-slate-800"></div>
+              <div className="hidden sm:block h-4 w-px bg-gray-200"></div>
               
               <div className="w-full sm:w-auto">
                 <span className="text-emerald-500 font-bold flex items-center gap-1">
@@ -313,18 +313,18 @@ const ProductDetails: React.FC = () => {
             </div>
 
             <div className="flex items-baseline gap-4 mb-8">
-              <span className="text-5xl font-black text-indigo-600 dark:text-indigo-400">
+              <span className="text-5xl font-black text-indigo-600">
                 {formatPrice(currentSalePrice || 0)}
               </span>
               {currentRegularPrice && currentSalePrice && currentRegularPrice > currentSalePrice && (
-                <span className="text-2xl text-slate-400 dark:text-slate-500 line-through font-bold">{formatPrice(currentRegularPrice)}</span>
+                <span className="text-2xl text-gray-400 line-through font-bold">{formatPrice(currentRegularPrice)}</span>
               )}
             </div>
 
             {/* Variants Selection */}
             {product.variants && product.variants.length > 0 && (
               <div className="mb-10">
-                <label className="block text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4">Select Variation</label>
+                <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-4">Select Variation</label>
                 <div className="space-y-3">
                   {product.variants.map((variant) => (
                     <label
@@ -332,16 +332,16 @@ const ProductDetails: React.FC = () => {
                       className={cn(
                         "flex items-center justify-between px-6 py-4 rounded-2xl cursor-pointer border-2 transition-all",
                         selectedVariant?.id === variant.id
-                          ? "bg-indigo-50 dark:bg-indigo-900/20 border-indigo-600 dark:border-indigo-500 shadow-sm"
-                          : "bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 hover:border-indigo-200 dark:hover:border-indigo-800"
+                          ? "bg-indigo-50 border-indigo-600 shadow-sm"
+                          : "bg-white border-gray-100 hover:border-indigo-200"
                       )}
                     >
                       <div className="flex items-center gap-4">
                         <div className={cn(
                           "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all",
                           selectedVariant?.id === variant.id
-                            ? "border-indigo-600 dark:border-indigo-500 bg-indigo-600 dark:bg-indigo-500"
-                            : "border-slate-300 dark:border-slate-700"
+                            ? "border-indigo-600 bg-indigo-600"
+                            : "border-gray-300"
                         )}>
                           {selectedVariant?.id === variant.id && (
                             <div className="w-2 h-2 rounded-full bg-white" />
@@ -349,14 +349,14 @@ const ProductDetails: React.FC = () => {
                         </div>
                         <span className={cn(
                           "font-bold transition-colors",
-                          selectedVariant?.id === variant.id ? "text-indigo-900 dark:text-indigo-100" : "text-slate-600 dark:text-slate-400"
+                          selectedVariant?.id === variant.id ? "text-indigo-900" : "text-gray-600"
                         )}>
                           {variant.name}
                         </span>
                       </div>
                       <span className={cn(
                         "font-black",
-                        selectedVariant?.id === variant.id ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400 dark:text-slate-500"
+                        selectedVariant?.id === variant.id ? "text-indigo-600" : "text-gray-400"
                       )}>
                         {formatPrice(variant.salePrice)}
                       </span>
@@ -376,13 +376,13 @@ const ProductDetails: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               <button 
                 onClick={handleBuyNow}
-                className="flex-1 bg-indigo-600 dark:bg-indigo-500 text-white py-5 rounded-[2rem] font-black text-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-all shadow-xl shadow-indigo-500/20 flex items-center justify-center gap-3 active:scale-95"
+                className="flex-1 bg-indigo-600 text-white py-5 rounded-[2rem] font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-500/20 flex items-center justify-center gap-3 active:scale-95"
               >
                 <Zap className="w-6 h-6" /> Buy Now
               </button>
               <button 
                 onClick={handleAddToCart}
-                className="flex-1 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 border-2 border-slate-100 dark:border-slate-800 py-5 rounded-[2rem] font-black text-lg hover:border-indigo-600 dark:hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all flex items-center justify-center gap-3 active:scale-95"
+                className="flex-1 bg-white text-gray-900 border-2 border-gray-100 py-5 rounded-[2rem] font-black text-lg hover:border-indigo-600 hover:text-indigo-600 transition-all flex items-center justify-center gap-3 active:scale-95"
               >
                 <ShoppingCart className="w-6 h-6" /> Add to Cart
               </button>
@@ -395,30 +395,30 @@ const ProductDetails: React.FC = () => {
               <MessageCircle className="w-6 h-6" /> Chat on WhatsApp
             </button>
 
-            <div id="product-tabs" className="mt-12 border-t border-slate-100 dark:border-slate-800 pt-8">
-              <div className="flex gap-8 mb-8 border-b border-slate-100 dark:border-slate-800">
+            <div id="product-tabs" className="mt-12 border-t border-gray-100 pt-8">
+              <div className="flex gap-8 mb-8 border-b border-gray-100">
                 <button 
                   onClick={() => setActiveTab('description')}
                   className={cn(
                     "pb-4 text-sm font-black uppercase tracking-widest transition-all relative",
-                    activeTab === 'description' ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300"
+                    activeTab === 'description' ? "text-indigo-600" : "text-gray-400 hover:text-gray-600"
                   )}
                 >
                   Description
                   {activeTab === 'description' && (
-                    <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 dark:bg-indigo-400" />
+                    <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600" />
                   )}
                 </button>
                 <button 
                   onClick={() => setActiveTab('reviews')}
                   className={cn(
                     "pb-4 text-sm font-black uppercase tracking-widest transition-all relative",
-                    activeTab === 'reviews' ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300"
+                    activeTab === 'reviews' ? "text-indigo-600" : "text-gray-400 hover:text-gray-600"
                   )}
                 >
                   Reviews ({reviews.length})
                   {activeTab === 'reviews' && (
-                    <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 dark:bg-indigo-400" />
+                    <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600" />
                   )}
                 </button>
               </div>
@@ -430,13 +430,13 @@ const ProductDetails: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="space-y-8"
                   >
-                    <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed font-medium whitespace-pre-wrap">
+                    <p className="text-gray-600 text-lg leading-relaxed font-medium whitespace-pre-wrap">
                       {product.description}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {features.map((feature, i) => (
-                        <div key={i} className="flex items-center gap-3 text-slate-700 dark:text-slate-300 font-bold text-sm">
-                          <div className="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 p-1 rounded-full">
+                        <div key={i} className="flex items-center gap-3 text-gray-700 font-bold text-sm">
+                          <div className="bg-emerald-50 text-emerald-600 p-1 rounded-full">
                             <CheckCircle2 className="w-4 h-4" />
                           </div>
                           {feature}
@@ -451,23 +451,23 @@ const ProductDetails: React.FC = () => {
                     className="space-y-12"
                   >
                     {/* Review Form */}
-                    <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
-                      <h3 className="text-xl font-black text-slate-900 dark:text-slate-50 mb-6">Write a Review</h3>
+                    <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+                      <h3 className="text-xl font-black text-gray-900 mb-6">Write a Review</h3>
                       <form onSubmit={handleSubmitReview} className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div>
-                            <label className="block text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Your Name</label>
+                            <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Your Name</label>
                             <input 
                               required
                               type="text"
                               value={reviewName}
                               onChange={(e) => setReviewName(e.target.value)}
-                              className="w-full px-6 py-4 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-50 dark:focus:ring-indigo-900/20 focus:border-indigo-200 dark:focus:border-indigo-800 transition-all font-medium text-slate-900 dark:text-slate-50"
+                              className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-200 transition-all font-medium"
                               placeholder="Enter your name"
                             />
                           </div>
                           <div>
-                            <label className="block text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Rating</label>
+                            <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Rating</label>
                             <div className="flex gap-2">
                               {[1, 2, 3, 4, 5].map((star) => (
                                 <button
@@ -478,7 +478,7 @@ const ProductDetails: React.FC = () => {
                                 >
                                   <Star className={cn(
                                     "w-8 h-8 transition-colors",
-                                    star <= reviewRating ? "text-amber-400 fill-current" : "text-slate-200 dark:text-slate-700"
+                                    star <= reviewRating ? "text-amber-400 fill-current" : "text-gray-200"
                                   )} />
                                 </button>
                               ))}
@@ -486,20 +486,20 @@ const ProductDetails: React.FC = () => {
                           </div>
                         </div>
                         <div>
-                          <label className="block text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Your Review</label>
+                          <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Your Review</label>
                           <textarea 
                             required
                             value={reviewText}
                             onChange={(e) => setReviewText(e.target.value)}
                             rows={4}
-                            className="w-full px-6 py-4 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-50 dark:focus:ring-indigo-900/20 focus:border-indigo-200 dark:focus:border-indigo-800 transition-all font-medium resize-none text-slate-900 dark:text-slate-50"
+                            className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-200 transition-all font-medium resize-none"
                             placeholder="Share your experience with this product..."
                           />
                         </div>
                         <button 
                           type="submit"
                           disabled={isSubmittingReview}
-                          className="bg-indigo-600 dark:bg-indigo-500 text-white px-10 py-4 rounded-2xl font-black flex items-center gap-2 hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-all shadow-lg shadow-indigo-500/20 disabled:opacity-50"
+                          className="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-black flex items-center gap-2 hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/20 disabled:opacity-50"
                         >
                           {isSubmittingReview ? (
                             <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -514,32 +514,32 @@ const ProductDetails: React.FC = () => {
                     <div className="space-y-8">
                       {reviews.length > 0 ? (
                         reviews.map((review) => (
-                          <div key={review.id} className="flex gap-6 pb-8 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                            <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/30 rounded-full flex items-center justify-center shrink-0">
-                              <User className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                          <div key={review.id} className="flex gap-6 pb-8 border-b border-gray-100 last:border-0">
+                            <div className="w-12 h-12 bg-indigo-50 rounded-full flex items-center justify-center shrink-0">
+                              <User className="w-6 h-6 text-indigo-600" />
                             </div>
                             <div className="flex-1">
                               <div className="flex items-center justify-between mb-2">
-                                <h4 className="font-black text-slate-900 dark:text-slate-50">{review.customerName}</h4>
+                                <h4 className="font-black text-gray-900">{review.customerName}</h4>
                                 <div className="flex gap-0.5">
                                   {[1, 2, 3, 4, 5].map((star) => (
                                     <Star key={star} className={cn(
                                       "w-3 h-3",
-                                      star <= (review.rating || 5) ? "text-amber-400 fill-current" : "text-slate-200 dark:text-slate-700"
+                                      star <= (review.rating || 5) ? "text-amber-400 fill-current" : "text-gray-200"
                                     )} />
                                   ))}
                                 </div>
                               </div>
-                              <p className="text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                              <p className="text-gray-600 font-medium leading-relaxed">
                                 {review.reviewText}
                               </p>
                             </div>
                           </div>
                         ))
                       ) : (
-                        <div className="text-center py-12 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border-2 border-dashed border-slate-200 dark:border-slate-800">
-                          <MessageCircle className="w-12 h-12 text-slate-300 dark:text-slate-700 mx-auto mb-4" />
-                          <p className="text-slate-500 dark:text-slate-400 font-bold">No reviews yet. Be the first to review!</p>
+                        <div className="text-center py-12 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
+                          <MessageCircle className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+                          <p className="text-gray-500 font-bold">No reviews yet. Be the first to review!</p>
                         </div>
                       )}
                     </div>
@@ -552,12 +552,12 @@ const ProductDetails: React.FC = () => {
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <section className="pt-20 border-t border-slate-100 dark:border-slate-800">
+          <section className="pt-20 border-t border-gray-100">
             <div className="flex items-center justify-between mb-12">
-              <h2 className="text-3xl font-black text-slate-900 dark:text-slate-50">Related Products</h2>
+              <h2 className="text-3xl font-black text-gray-900">Related Products</h2>
               <button 
                 onClick={() => navigate('/products')}
-                className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline"
+                className="text-indigo-600 font-bold hover:underline"
               >
                 View All
               </button>

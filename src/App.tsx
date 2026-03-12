@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
-import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
@@ -36,12 +35,11 @@ export default function App() {
   }, []);
 
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <CartProvider>
-          <Router>
-            <ScrollToTop />
-            <div className="min-h-screen font-sans selection:bg-indigo-100 selection:text-indigo-900 transition-colors duration-500">
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <ScrollToTop />
+          <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-indigo-100 selection:text-indigo-900">
             <Header onCartOpen={() => setIsCartOpen(true)} />
             <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
             
@@ -78,6 +76,5 @@ export default function App() {
         </Router>
       </CartProvider>
     </AuthProvider>
-  </ThemeProvider>
-);
+  );
 }

@@ -51,7 +51,7 @@ const Home: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
       </div>
     );
@@ -75,10 +75,10 @@ const Home: React.FC = () => {
       <section className="px-4 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8 md:mb-12">
           <div className="flex items-baseline gap-3">
-            <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-slate-50">
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900">
               {selectedCategory || 'All Products'}
             </h2>
-            <span className="text-xs md:text-sm font-bold text-slate-400 dark:text-slate-500">{filteredProducts.length} Items</span>
+            <span className="text-xs md:text-sm font-bold text-gray-400">{filteredProducts.length} Items</span>
           </div>
           <Link 
             to="/products" 
@@ -106,13 +106,13 @@ const Home: React.FC = () => {
           <motion.div
             key={i}
             whileHover={{ y: -5 }}
-            className="p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all"
+            className="p-8 rounded-[2.5rem] bg-white/40 backdrop-blur-md border border-white/20 shadow-sm hover:shadow-xl transition-all"
           >
-            <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/30 rounded-2xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-6">
+            <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-6">
               <f.icon className="w-7 h-7" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-slate-50 mb-2">{f.title}</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">{f.desc}</p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">{f.title}</h3>
+            <p className="text-sm text-gray-500 leading-relaxed font-medium">{f.desc}</p>
           </motion.div>
         ))}
       </section>

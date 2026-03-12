@@ -31,7 +31,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ src, name, className, size = 'm
       <img
         src={src}
         alt={name || 'User'}
-        className={cn('rounded-full object-cover border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-500', sizeClasses[size], className)}
+        className={cn('rounded-full object-cover border border-gray-100 shadow-sm', sizeClasses[size], className)}
         referrerPolicy="no-referrer"
       />
     );
@@ -41,7 +41,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ src, name, className, size = 'm
     return (
       <div
         className={cn(
-          'rounded-full bg-slate-100 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-black border border-slate-200 dark:border-slate-700 shadow-sm transition-all duration-500',
+          'rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-black border border-indigo-200 shadow-sm',
           sizeClasses[size],
           className
         )}
@@ -54,7 +54,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ src, name, className, size = 'm
   return (
     <div
       className={cn(
-        'rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 flex items-center justify-center border border-slate-200 dark:border-slate-700 shadow-sm transition-all duration-500',
+        'rounded-full bg-gray-100 text-gray-400 flex items-center justify-center border border-gray-200 shadow-sm',
         sizeClasses[size],
         className
       )}

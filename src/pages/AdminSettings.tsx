@@ -66,72 +66,72 @@ const AdminSettings: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      <div className="transition-colors duration-500">
-        <h1 className="text-3xl font-black text-slate-900 dark:text-slate-50 mb-2">Store Settings</h1>
-        <p className="text-slate-500 dark:text-slate-400">Update your contact information and payment details.</p>
+      <div>
+        <h1 className="text-3xl font-black text-white mb-2">Store Settings</h1>
+        <p className="text-slate-500">Update your contact information and payment details.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors duration-500">
-          <div className="p-8 border-b border-slate-100 dark:border-slate-800 transition-colors duration-500">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 flex items-center gap-3">
-              <Phone className="w-6 h-6 text-indigo-500 dark:text-indigo-400" />
+        <div className="glass-dark rounded-[2.5rem] border border-slate-800 overflow-hidden">
+          <div className="p-8 border-b border-slate-800">
+            <h2 className="text-xl font-bold text-white flex items-center gap-3">
+              <Phone className="w-6 h-6 text-indigo-400" />
               Contact Information
             </h2>
           </div>
           <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1">WhatsApp Number</label>
+              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">WhatsApp Number</label>
               <div className="relative">
-                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <input 
                   type="text"
                   name="whatsappNumber"
                   value={settings.whatsappNumber}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-4 pl-12 pr-4 text-slate-900 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                   placeholder="+8801234567890"
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1">Email Address</label>
+              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Email Address</label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <input 
                   type="email"
                   name="email"
                   value={settings.email}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-4 pl-12 pr-4 text-slate-900 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                   placeholder="contact@plaxomart.com"
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1">Location</label>
+              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Location</label>
               <div className="relative">
-                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <input 
                   type="text"
                   name="location"
                   value={settings.location}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-4 pl-12 pr-4 text-slate-900 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                   placeholder="Gaibandha, Bangladesh"
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1">Facebook Page URL</label>
+              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Facebook Page URL</label>
               <div className="relative">
-                <Facebook className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                <Facebook className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <input 
                   type="text"
                   name="facebookPage"
                   value={settings.facebookPage}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-4 pl-12 pr-4 text-slate-900 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                   placeholder="https://facebook.com/plaxomart"
                 />
               </div>
@@ -139,28 +139,28 @@ const AdminSettings: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors duration-500">
-          <div className="p-8 border-b border-slate-100 dark:border-slate-800 transition-colors duration-500">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 flex items-center gap-3">
-              <CreditCard className="w-6 h-6 text-indigo-500 dark:text-indigo-400" />
+        <div className="glass-dark rounded-[2.5rem] border border-slate-800 overflow-hidden">
+          <div className="p-8 border-b border-slate-800">
+            <h2 className="text-xl font-bold text-white flex items-center gap-3">
+              <CreditCard className="w-6 h-6 text-indigo-400" />
               Payment Details
             </h2>
           </div>
           <div className="p-8">
             <div className="max-w-md space-y-2">
-              <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1">Payment Number (bKash/Nagad)</label>
+              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Payment Number (bKash/Nagad)</label>
               <div className="relative">
-                <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
+                <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <input 
                   type="text"
                   name="paymentNumber"
                   value={settings.paymentNumber}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-4 pl-12 pr-4 text-slate-900 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                   placeholder="017XXXXXXXX"
                 />
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 ml-1 italic">This number will be shown to customers during checkout.</p>
+              <p className="text-xs text-slate-500 mt-2 ml-1 italic">This number will be shown to customers during checkout.</p>
             </div>
           </div>
         </div>
@@ -171,7 +171,7 @@ const AdminSettings: React.FC = () => {
               <motion.div 
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold"
+                className="flex items-center gap-2 text-emerald-400 font-bold"
               >
                 <Check className="w-5 h-5" /> Settings saved successfully!
               </motion.div>

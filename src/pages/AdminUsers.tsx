@@ -131,10 +131,10 @@ const AdminUsers: React.FC = () => {
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-slate-900 dark:text-white mb-2 transition-colors duration-500">User Management</h1>
-          <p className="text-slate-600 dark:text-slate-400 transition-colors duration-500">Manage registered users and their permissions.</p>
+          <h1 className="text-3xl font-black text-white mb-2">User Management</h1>
+          <p className="text-slate-500">Manage registered users and their permissions.</p>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex items-center gap-3">
           <button
             onClick={exportUserReport}
             className="bg-indigo-600 text-white px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/20"
@@ -142,11 +142,11 @@ const AdminUsers: React.FC = () => {
             <Download className="w-4 h-4" />
             Export User Report
           </button>
-          <div className="flex bg-white dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-500">
+          <div className="flex bg-slate-800/50 p-1 rounded-xl border border-slate-700/50">
             <button
               onClick={() => setSortBy('spent')}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 ${
-                sortBy === 'spent' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                sortBy === 'spent' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'text-slate-400 hover:text-white'
               }`}
             >
               <Wallet className="w-3 h-3" />
@@ -155,14 +155,14 @@ const AdminUsers: React.FC = () => {
             <button
               onClick={() => setSortBy('joined')}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 ${
-                sortBy === 'joined' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                sortBy === 'joined' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'text-slate-400 hover:text-white'
               }`}
             >
               <Calendar className="w-3 h-3" />
               Sort by Joined
             </button>
           </div>
-          <div className="bg-indigo-600/10 text-indigo-600 dark:text-indigo-400 px-4 py-2 rounded-xl border border-indigo-500/20 font-bold flex items-center gap-2">
+          <div className="bg-indigo-600/10 text-indigo-400 px-4 py-2 rounded-xl border border-indigo-500/20 font-bold flex items-center gap-2">
             <Users className="w-5 h-5" />
             {users.length} Total Users
           </div>
@@ -172,10 +172,10 @@ const AdminUsers: React.FC = () => {
       {/* Admins Segment */}
       <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <Shield className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-          <h2 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-wider transition-colors duration-500">Admins</h2>
-          <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800 transition-colors duration-500"></div>
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{admins.length} Admins</span>
+          <Shield className="w-6 h-6 text-emerald-400" />
+          <h2 className="text-xl font-black text-white uppercase tracking-wider">Admins</h2>
+          <div className="h-px flex-1 bg-slate-800"></div>
+          <span className="text-xs font-bold text-slate-500">{admins.length} Admins</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {admins.map((user) => (
@@ -187,17 +187,17 @@ const AdminUsers: React.FC = () => {
           ))}
         </div>
         {admins.length === 0 && (
-          <p className="text-center py-10 text-slate-500 dark:text-slate-600 font-medium italic">No administrators found.</p>
+          <p className="text-center py-10 text-slate-600 font-medium italic">No administrators found.</p>
         )}
       </div>
 
       {/* Regular Users Segment */}
       <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <UserIcon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-          <h2 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-wider transition-colors duration-500">Regular Users</h2>
-          <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800 transition-colors duration-500"></div>
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{regularUsers.length} Users</span>
+          <UserIcon className="w-6 h-6 text-blue-400" />
+          <h2 className="text-xl font-black text-white uppercase tracking-wider">Regular Users</h2>
+          <div className="h-px flex-1 bg-slate-800"></div>
+          <span className="text-xs font-bold text-slate-500">{regularUsers.length} Users</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {regularUsers.map((user) => (
@@ -210,7 +210,7 @@ const AdminUsers: React.FC = () => {
           ))}
         </div>
         {regularUsers.length === 0 && (
-          <p className="text-center py-10 text-slate-500 dark:text-slate-600 font-medium italic">No regular users found.</p>
+          <p className="text-center py-10 text-slate-600 font-medium italic">No regular users found.</p>
         )}
       </div>
     </div>
@@ -229,18 +229,18 @@ const UserCard: React.FC<UserCardProps> = ({ user, onRevoke, onMessage, onRemove
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-200 dark:border-slate-800 relative overflow-hidden group transition-colors duration-500 shadow-sm"
+      className="glass-dark p-6 rounded-[2rem] border border-slate-800 relative overflow-hidden group"
     >
       <div className="flex items-start gap-4 mb-6 relative z-10">
         <UserAvatar 
           src={user.profilePic || user.photoURL} 
           name={user.displayName} 
           size="lg" 
-          className="rounded-2xl border-2 border-slate-100 dark:border-slate-700 shadow-xl"
+          className="rounded-2xl border-2 border-slate-700 shadow-xl"
         />
         <div className="min-w-0">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white truncate transition-colors duration-500">{user.displayName}</h3>
-          <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs font-medium mt-1 transition-colors duration-500">
+          <h3 className="text-lg font-bold text-white truncate">{user.displayName}</h3>
+          <div className="flex items-center gap-2 text-slate-500 text-xs font-medium mt-1">
             <Mail className="w-3 h-3" />
             <span className="truncate">{user.email}</span>
           </div>
@@ -248,44 +248,44 @@ const UserCard: React.FC<UserCardProps> = ({ user, onRevoke, onMessage, onRemove
       </div>
 
       <div className="space-y-4 relative z-10">
-        <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 transition-colors duration-500">
+        <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded-xl border border-slate-700/50">
           <div className="flex items-center gap-2">
-            <Shield className={`w-4 h-4 ${user.role === 'admin' ? 'text-emerald-600 dark:text-emerald-400' : 'text-blue-600 dark:text-blue-400'}`} />
-            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Role</span>
+            <Shield className={`w-4 h-4 ${user.role === 'admin' ? 'text-emerald-400' : 'text-blue-400'}`} />
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Role</span>
           </div>
-          <span className={`text-xs font-black uppercase tracking-widest ${user.role === 'admin' ? 'text-emerald-600 dark:text-emerald-400' : 'text-blue-600 dark:text-blue-400'}`}>
+          <span className={`text-xs font-black uppercase tracking-widest ${user.role === 'admin' ? 'text-emerald-400' : 'text-blue-400'}`}>
             {user.role}
           </span>
         </div>
 
-        <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 transition-colors duration-500">
+        <div className="flex items-center justify-between p-3 bg-slate-800/50 rounded-xl border border-slate-700/50">
           <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-slate-400 dark:text-slate-500" />
-            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Joined</span>
+            <Calendar className="w-4 h-4 text-slate-500" />
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Joined</span>
           </div>
-          <span className="text-xs font-bold text-slate-700 dark:text-slate-300 transition-colors duration-500">
+          <span className="text-xs font-bold text-slate-300">
             {formatDate(user.createdAt)}
           </span>
         </div>
 
         <div className="flex items-center justify-between p-3 bg-indigo-500/5 rounded-xl border border-indigo-500/10">
           <div className="flex items-center gap-2">
-            <Wallet className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">Total Spent</span>
+            <Wallet className="w-4 h-4 text-indigo-400" />
+            <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest">Total Spent</span>
           </div>
-          <span className="text-xs font-black text-indigo-600 dark:text-indigo-400">
+          <span className="text-xs font-black text-indigo-400">
             {formatPrice(user.totalSpent || 0)}
           </span>
         </div>
       </div>
 
-      <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 relative z-10 space-y-3 transition-colors duration-500">
+      <div className="mt-6 pt-6 border-t border-slate-800 relative z-10 space-y-3">
         {(onMessage || onRemove) && (
           <div className="grid grid-cols-2 gap-3">
             {onMessage && (
               <button
                 onClick={onMessage}
-                className="flex items-center justify-center gap-2 py-3 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-emerald-500/20 transition-all"
+                className="flex items-center justify-center gap-2 py-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-emerald-500/20 transition-all"
               >
                 <MessageSquare className="w-4 h-4" />
                 Message
@@ -294,7 +294,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, onRevoke, onMessage, onRemove
             {onRemove && (
               <button
                 onClick={onRemove}
-                className="flex items-center justify-center gap-2 py-3 bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-red-500/20 transition-all"
+                className="flex items-center justify-center gap-2 py-3 bg-red-500/10 text-red-400 border border-red-500/20 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-red-500/20 transition-all"
               >
                 <Trash2 className="w-4 h-4" />
                 Remove
@@ -306,7 +306,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, onRevoke, onMessage, onRemove
         {onRevoke && (
           <button
             onClick={onRevoke}
-            className="w-full py-3 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+            className="w-full py-3 bg-slate-800 text-slate-400 border border-slate-700 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-slate-700 transition-all"
           >
             Revoke Admin
           </button>
