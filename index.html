@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixi Marts | Premium Digital Products & Software Marketplace</title>
+    <meta name="description" content="Pixi Marts is your trusted marketplace for premium digital products, software licenses, and lifetime accounts with instant delivery." />
+    <meta name="theme-color" content="#4f46e5" />
+    <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+    <link rel="mask-icon" href="/masked-icon.svg" color="#4f46e5" />
+    <meta name="keywords" content="digital products, software licenses, netflix premium, canva pro, windows key, office 2021, spotify premium" />
+    <meta property="og:title" content="Pixi Marts | Premium Digital Products Marketplace" />
+    <meta property="og:description" content="Get instant access to premium software and accounts at the best prices." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Fix for "Cannot set property fetch of #<Window> which has only a getter"
+      // This happens when some libraries try to overwrite the global fetch.
+      (function() {
+        try {
+          const originalFetch = window.fetch;
+          if (originalFetch) {
+            Object.defineProperty(window, 'fetch', {
+              configurable: true,
+              enumerable: true,
+              get: function() { return originalFetch; },
+              set: function() { /* ignore attempts to overwrite */ }
+            });
+          }
+        } catch (e) {
+          // If we can't patch it, just log and continue
+          console.debug('Fetch protection skipped:', e.message);
+        }
+      })();
+    </script>
+  </head>
+  <body class="antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
