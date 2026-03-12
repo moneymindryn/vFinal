@@ -200,12 +200,12 @@ const Profile: React.FC = () => {
       case 'Complete':
       case 'Completed':
       case 'Delivered':
-        return 'bg-green-50 text-green-700 border-green-100';
+        return 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border-green-100 dark:border-green-900/30';
       case 'Reject':
       case 'Rejected':
-        return 'bg-red-50 text-red-700 border-red-100';
+        return 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border-red-100 dark:border-red-900/30';
       default:
-        return 'bg-yellow-50 text-yellow-700 border-yellow-100';
+        return 'bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400 border-yellow-100 dark:border-yellow-900/30';
     }
   };
 
@@ -237,9 +237,9 @@ const Profile: React.FC = () => {
   if (!profile) return null;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
+    <div className="max-w-4xl mx-auto px-4 py-12 space-y-8 transition-colors duration-500">
       {/* Profile Card */}
-      <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden transition-all duration-500">
         <div className="bg-indigo-600 px-8 py-12 text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-violet-700 opacity-50" />
           <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
@@ -250,7 +250,7 @@ const Profile: React.FC = () => {
                 size="xl" 
                 className="border-4 border-white/20 shadow-xl"
               />
-              <label className="absolute -bottom-2 -right-2 bg-white text-indigo-600 p-2.5 rounded-2xl shadow-lg cursor-pointer hover:scale-110 transition-transform">
+              <label className="absolute -bottom-2 -right-2 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 p-2.5 rounded-2xl shadow-lg cursor-pointer hover:scale-110 transition-transform">
                 <Camera className="w-5 h-5" />
                 <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
               </label>
@@ -284,7 +284,7 @@ const Profile: React.FC = () => {
                   <div className="flex gap-2">
                     <button
                       onClick={handleUpdateProfile}
-                      className="flex-1 bg-white text-indigo-600 py-2 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-indigo-50 transition-all"
+                      className="flex-1 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 py-2 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-indigo-50 dark:hover:bg-slate-700 transition-all"
                     >
                       <Save className="w-4 h-4" /> Save Changes
                     </button>
@@ -299,12 +299,12 @@ const Profile: React.FC = () => {
               ) : (
                 <>
                   <div className="flex items-center justify-center md:justify-start gap-4">
-                    <h1 className="text-4xl font-black">{profile.displayName}</h1>
+                    <h1 className="text-4xl font-black text-white">{profile.displayName}</h1>
                     <button 
                       onClick={() => setIsEditing(true)}
                       className="p-2 bg-white/10 rounded-xl hover:bg-white/20 transition-all"
                     >
-                      <Edit2 className="w-4 h-4" />
+                      <Edit2 className="w-4 h-4 text-white" />
                     </button>
                   </div>
                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 text-indigo-100 font-medium">
@@ -326,42 +326,42 @@ const Profile: React.FC = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50/50">
+        <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50/50 dark:bg-slate-900/50 transition-colors duration-500">
           {profile.role === 'admin' && (
             <Link 
               to="/admin"
-              className="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-white hover:border-emerald-200 hover:bg-emerald-50/30 transition-all group"
+              className="flex items-center gap-4 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-800 hover:border-emerald-200 dark:hover:border-emerald-900 hover:bg-emerald-50/30 dark:hover:bg-emerald-900/20 transition-all group"
             >
-              <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-gray-900">Admin Panel</h3>
-                <p className="text-xs text-gray-500 font-medium">Manage products and orders</p>
+                <h3 className="font-bold text-slate-900 dark:text-slate-50">Admin Panel</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Manage products and orders</p>
               </div>
-              <ChevronRight className="w-4 h-4 ml-auto text-gray-300" />
+              <ChevronRight className="w-4 h-4 ml-auto text-slate-300 dark:text-slate-600" />
             </Link>
           )}
 
           <button 
             onClick={handleLogout}
-            className="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-white hover:border-red-200 hover:bg-red-50/30 transition-all group text-left"
+            className="flex items-center gap-4 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-800 hover:border-red-200 dark:hover:border-red-900 hover:bg-red-50/30 dark:hover:bg-red-900/20 transition-all group text-left"
           >
-            <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center text-red-600 group-hover:scale-110 transition-transform">
+            <div className="w-10 h-10 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center text-red-600 dark:text-red-400 group-hover:scale-110 transition-transform">
               <LogOut className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900">Sign Out</h3>
-              <p className="text-xs text-gray-500 font-medium">Logout from your account</p>
+              <h3 className="font-bold text-slate-900 dark:text-slate-50">Sign Out</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Logout from your account</p>
             </div>
-            <ChevronRight className="w-4 h-4 ml-auto text-gray-300" />
+            <ChevronRight className="w-4 h-4 ml-auto text-slate-300 dark:text-slate-600" />
           </button>
         </div>
       </div>
 
       {/* Summary Card */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-indigo-600 rounded-[2rem] p-8 text-white shadow-lg shadow-indigo-200 relative overflow-hidden group">
+        <div className="bg-indigo-600 rounded-[2rem] p-8 text-white shadow-lg shadow-indigo-200 dark:shadow-none relative overflow-hidden group">
           <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
           <div className="relative z-10">
             <div className="bg-white/20 w-12 h-12 rounded-2xl flex items-center justify-center mb-4">
@@ -374,43 +374,43 @@ const Profile: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm md:col-span-2 flex items-center justify-between">
+        <div className="bg-white dark:bg-slate-900 rounded-[2rem] p-8 border border-slate-100 dark:border-slate-800 shadow-sm md:col-span-2 flex items-center justify-between transition-all duration-500">
           <div className="space-y-1">
-            <p className="text-gray-400 font-bold text-sm uppercase tracking-widest">Order Statistics</p>
-            <h3 className="text-2xl font-black text-gray-900">Activity Overview</h3>
+            <p className="text-slate-400 dark:text-slate-500 font-bold text-sm uppercase tracking-widest">Order Statistics</p>
+            <h3 className="text-2xl font-black text-slate-900 dark:text-slate-50">Activity Overview</h3>
           </div>
             <div className="flex gap-6">
               <div className="text-center">
-                <p className="text-2xl font-black text-indigo-600">{orders.length}</p>
-                <p className="text-[10px] text-gray-400 font-bold uppercase">Total</p>
+                <p className="text-2xl font-black text-indigo-600 dark:text-indigo-400">{orders.length}</p>
+                <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase">Total</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-black text-green-500">{orders.filter(o => o.status === 'Complete' || o.status === 'Delivered').length}</p>
-                <p className="text-[10px] text-gray-400 font-bold uppercase">Completed</p>
+                <p className="text-2xl font-black text-green-500 dark:text-green-400">{orders.filter(o => o.status === 'Complete' || o.status === 'Delivered').length}</p>
+                <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase">Completed</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-black text-yellow-500">{orders.filter(o => o.status === 'Pending').length}</p>
-                <p className="text-[10px] text-gray-400 font-bold uppercase">Pending</p>
+                <p className="text-2xl font-black text-yellow-500 dark:text-yellow-400">{orders.filter(o => o.status === 'Pending').length}</p>
+                <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase">Pending</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-black text-red-500">{orders.filter(o => o.status === 'Reject').length}</p>
-                <p className="text-[10px] text-gray-400 font-bold uppercase">Rejected</p>
+                <p className="text-2xl font-black text-red-500 dark:text-red-400">{orders.filter(o => o.status === 'Reject').length}</p>
+                <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase">Rejected</p>
               </div>
             </div>
         </div>
       </div>
 
       {/* Order History */}
-      <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
-        <div className="p-8 border-b border-gray-50 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden transition-all duration-500">
+        <div className="p-8 border-b border-slate-50 dark:border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="bg-indigo-100 p-2.5 rounded-2xl">
-              <Package className="w-6 h-6 text-indigo-600" />
+            <div className="bg-indigo-100 dark:bg-indigo-900/30 p-2.5 rounded-2xl">
+              <Package className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             </div>
-            <h2 className="text-2xl font-black text-gray-900">Order History</h2>
+            <h2 className="text-2xl font-black text-slate-900 dark:text-slate-50">Order History</h2>
           </div>
           
-          <div className="flex bg-gray-50 p-1.5 rounded-2xl overflow-x-auto no-scrollbar">
+          <div className="flex bg-slate-50 dark:bg-slate-800 p-1.5 rounded-2xl overflow-x-auto no-scrollbar transition-colors duration-500">
             {(['All', 'Pending', 'Completed', 'Rejected'] as const).map((tab) => (
               <button
                 key={tab}
@@ -418,8 +418,8 @@ const Profile: React.FC = () => {
                 className={cn(
                   "px-6 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap",
                   activeTab === tab 
-                    ? "bg-white text-indigo-600 shadow-sm" 
-                    : "text-gray-500 hover:text-gray-700"
+                    ? "bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 shadow-sm" 
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                 )}
               >
                 {tab}
@@ -447,36 +447,36 @@ const Profile: React.FC = () => {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
-                      className="p-6 rounded-3xl border border-gray-100 hover:border-indigo-100 hover:bg-gray-50 hover:shadow-md transition-all cursor-pointer"
+                      className="p-6 rounded-3xl border border-slate-100 dark:border-slate-800 hover:border-indigo-100 dark:hover:border-indigo-900 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:shadow-md transition-all cursor-pointer"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-4">
                         <div className="space-y-2">
                           <div className="flex items-center gap-3">
-                            <span className="text-sm font-black text-gray-900">{order.trackingNumber || `#${order.id.slice(-8).toUpperCase()}`}</span>
+                            <span className="text-sm font-black text-slate-900 dark:text-slate-50">{order.trackingNumber || `#${order.id.slice(-8).toUpperCase()}`}</span>
                             <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold border ${getStatusClass(order.status)}`}>
                               {getStatusIcon(order.status)}
                               {order.status === 'Complete' || order.status === 'Delivered' ? 'Completed' : order.status === 'Reject' ? 'Rejected' : order.status}
                             </div>
                           </div>
-                          <div className="flex items-center gap-4 text-xs text-gray-400 font-medium">
+                          <div className="flex items-center gap-4 text-xs text-slate-400 dark:text-slate-500 font-medium">
                             <span className="flex items-center gap-1">
                               <Clock className="w-3 h-3" />
                               {formatDate(order.createdAt)}
                             </span>
-                            <span className="w-1 h-1 bg-gray-200 rounded-full" />
+                            <span className="w-1 h-1 bg-slate-200 dark:bg-slate-700 rounded-full" />
                             <span>{order.items.length} Items</span>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-xl font-black text-indigo-600 group-hover:scale-110 transition-transform origin-right">
+                          <p className="text-xl font-black text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform origin-right">
                             {formatPrice(order.totalAmount)}
                           </p>
-                          <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{order.paymentMethod}</p>
+                          <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest">{order.paymentMethod}</p>
                         </div>
                       </div>
 
                       {(order.status === 'Pending' || order.status === 'Reject') && (
-                        <div className="mt-4 pt-4 border-t border-gray-50">
+                        <div className="mt-4 pt-4 border-t border-slate-50 dark:border-slate-800">
                           <button
                             onClick={(e) => handleWhatsAppSupport(e, order)}
                             className="inline-flex items-center gap-2 px-4 py-2 bg-[#25D366] text-white rounded-xl text-xs font-bold hover:bg-[#128C7E] transition-all shadow-sm hover:shadow-md"
@@ -493,18 +493,18 @@ const Profile: React.FC = () => {
             </div>
           ) : (
             <div className="text-center py-16">
-              <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-300">
+              <div className="w-20 h-20 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-300 dark:text-slate-600">
                 <Package className="w-10 h-10" />
               </div>
-              <h3 className="text-xl font-black text-gray-900 mb-2">No {activeTab.toLowerCase()} orders</h3>
-              <p className="text-sm text-gray-500 font-medium mb-8">
+              <h3 className="text-xl font-black text-slate-900 dark:text-slate-50 mb-2">No {activeTab.toLowerCase()} orders</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 font-medium mb-8">
                 {activeTab === 'All' 
                   ? "You haven't placed any orders yet." 
                   : `You don't have any ${activeTab.toLowerCase()} orders at the moment.`}
               </p>
               <Link 
                 to="/products"
-                className="inline-flex items-center gap-2 bg-indigo-600 text-white px-8 py-3 rounded-2xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100"
+                className="inline-flex items-center gap-2 bg-indigo-600 text-white px-8 py-3 rounded-2xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 dark:shadow-none"
               >
                 Start Shopping
               </Link>

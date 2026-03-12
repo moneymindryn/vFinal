@@ -33,13 +33,13 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 transition-colors duration-500">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-black text-slate-900 mb-4"
+            className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4 transition-colors duration-500"
           >
             Get in Touch
           </motion.h1>
@@ -47,7 +47,7 @@ const Contact: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-slate-600 max-w-2xl mx-auto"
+            className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto transition-colors duration-500"
           >
             Have questions about our digital products? We're here to help you 24/7.
           </motion.p>
@@ -56,51 +56,51 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Contact Info */}
           <div className="lg:col-span-1 space-y-6">
-            <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100">
-              <h2 className="text-xl font-bold text-slate-900 mb-8">Contact Information</h2>
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800 transition-colors duration-500">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-8 transition-colors duration-500">Contact Information</h2>
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="bg-indigo-50 p-3 rounded-xl text-indigo-600">
+                  <div className="bg-indigo-50 dark:bg-indigo-500/10 p-3 rounded-xl text-indigo-600 dark:text-indigo-400 transition-colors duration-500">
                     <Phone className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-slate-900">WhatsApp</p>
-                    <p className="text-slate-600">{settings?.whatsappNumber || '+880 1838-192595'}</p>
+                    <p className="text-sm font-bold text-slate-900 dark:text-white transition-colors duration-500">WhatsApp</p>
+                    <p className="text-slate-600 dark:text-slate-400 transition-colors duration-500">{settings?.whatsappNumber || '+880 1838-192595'}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-indigo-50 p-3 rounded-xl text-indigo-600">
+                  <div className="bg-indigo-50 dark:bg-indigo-500/10 p-3 rounded-xl text-indigo-600 dark:text-indigo-400 transition-colors duration-500">
                     <Mail className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-slate-900">Email</p>
-                    <p className="text-slate-600">{settings?.email || 'infoplaxora@gmail.com'}</p>
+                    <p className="text-sm font-bold text-slate-900 dark:text-white transition-colors duration-500">Email</p>
+                    <p className="text-slate-600 dark:text-slate-400 transition-colors duration-500">{settings?.email || 'infoplaxora@gmail.com'}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-indigo-50 p-3 rounded-xl text-indigo-600">
+                  <div className="bg-indigo-50 dark:bg-indigo-500/10 p-3 rounded-xl text-indigo-600 dark:text-indigo-400 transition-colors duration-500">
                     <MapPin className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-slate-900">Location</p>
-                    <p className="text-slate-600">{settings?.location || 'Gaibandha, Bangladesh'}</p>
+                    <p className="text-sm font-bold text-slate-900 dark:text-white transition-colors duration-500">Location</p>
+                    <p className="text-slate-600 dark:text-slate-400 transition-colors duration-500">{settings?.location || 'Gaibandha, Bangladesh'}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-indigo-50 p-3 rounded-xl text-indigo-600">
+                  <div className="bg-indigo-50 dark:bg-indigo-500/10 p-3 rounded-xl text-indigo-600 dark:text-indigo-400 transition-colors duration-500">
                     <Facebook className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-slate-900">Facebook</p>
+                    <p className="text-sm font-bold text-slate-900 dark:text-white transition-colors duration-500">Facebook</p>
                     <a 
                       href={settings?.facebookPage || '#'} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-indigo-600 hover:underline"
+                      className="text-indigo-600 dark:text-indigo-400 hover:underline transition-colors duration-500"
                     >
                       Visit our page
                     </a>
@@ -125,17 +125,17 @@ const Contact: React.FC = () => {
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-slate-100">
+            <div className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-slate-100 dark:border-slate-800 transition-colors duration-500">
               {isSubmitted ? (
                 <div className="py-12 text-center">
-                  <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-6 transition-colors duration-500">
                     <CheckCircle className="w-10 h-10" />
                   </div>
-                  <h2 className="text-2xl font-bold text-slate-900 mb-2">Message Sent!</h2>
-                  <p className="text-slate-600">Thank you for reaching out. We'll get back to you shortly.</p>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 transition-colors duration-500">Message Sent!</h2>
+                  <p className="text-slate-600 dark:text-slate-400 transition-colors duration-500">Thank you for reaching out. We'll get back to you shortly.</p>
                   <button 
                     onClick={() => setIsSubmitted(false)}
-                    className="mt-8 text-indigo-600 font-bold hover:underline"
+                    className="mt-8 text-indigo-600 dark:text-indigo-400 font-bold hover:underline transition-colors duration-500"
                   >
                     Send another message
                   </button>
@@ -144,53 +144,53 @@ const Contact: React.FC = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-700 ml-1">Your Name</label>
+                      <label className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors duration-500">Your Name</label>
                       <input 
                         type="text"
                         name="name"
                         required
                         value={formState.name}
                         onChange={handleChange}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-4 px-6 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
                         placeholder="John Doe"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-700 ml-1">Email Address</label>
+                      <label className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors duration-500">Email Address</label>
                       <input 
                         type="email"
                         name="email"
                         required
                         value={formState.email}
                         onChange={handleChange}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-4 px-6 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
                         placeholder="john@example.com"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 ml-1">Subject</label>
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors duration-500">Subject</label>
                     <input 
                       type="text"
                       name="subject"
                       required
                       value={formState.subject}
                       onChange={handleChange}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-4 px-6 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
                       placeholder="How can we help?"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 ml-1">Message</label>
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors duration-500">Message</label>
                     <textarea 
                       name="message"
                       required
                       value={formState.message}
                       onChange={handleChange}
                       rows={6}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all resize-none"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-4 px-6 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all resize-none placeholder:text-slate-400 dark:placeholder:text-slate-500"
                       placeholder="Write your message here..."
                     />
                   </div>

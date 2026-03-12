@@ -10,7 +10,10 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply antialiased;
+    @apply antialiased bg-slate-50 text-slate-600 transition-colors duration-500;
+  }
+  .dark body {
+    @apply bg-slate-950 text-slate-400;
   }
 }
 
@@ -21,5 +24,68 @@
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  @keyframes glow-pulse {
+    0% { box-shadow: 0 0 5px rgba(79, 70, 229, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.5); }
+    100% { box-shadow: 0 0 5px rgba(79, 70, 229, 0.2); }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s infinite ease-in-out;
+  }
+
+  @keyframes breathing-glow-orange {
+    0% { box-shadow: 0 0 5px rgba(255, 165, 0, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(255, 165, 0, 0.5); }
+    100% { box-shadow: 0 0 5px rgba(255, 165, 0, 0.2); }
+  }
+
+  .animate-breathing-orange {
+    animation: breathing-glow-orange 4s infinite ease-in-out;
+  }
+
+  @keyframes discount-glow {
+    0% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.5); transform: scale(1); }
+    50% { box-shadow: 0 0 15px rgba(249, 115, 22, 0.8); transform: scale(1.05); }
+    100% { box-shadow: 0 0 5px rgba(239, 68, 68, 0.5); transform: scale(1); }
+  }
+
+  .animate-discount-glow {
+    animation: discount-glow 1.5s infinite ease-in-out;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-150%) skewX(-25deg); }
+    75% { transform: translateX(150%) skewX(-25deg); }
+    100% { transform: translateX(150%) skewX(-25deg); }
+  }
+
+  .shimmer-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-effect::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 60%,
+      transparent
+    );
+    filter: blur(12px);
+    transform: translateX(-150%) skewX(-25deg);
+    animation: shimmer 4s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 5;
   }
 }

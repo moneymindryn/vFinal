@@ -23,27 +23,27 @@ const FAQSection: React.FC = () => {
   if (faqs.length === 0) return null;
 
   return (
-    <div className="max-w-3xl mx-auto py-20">
+    <div className="max-w-3xl mx-auto py-20 transition-colors duration-500">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-black text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <p className="text-gray-500 font-medium">Got questions? We've got answers.</p>
+        <h2 className="text-3xl font-black text-slate-900 dark:text-slate-50 mb-4">Frequently Asked Questions</h2>
+        <p className="text-slate-500 dark:text-slate-400 font-medium">Got questions? We've got answers.</p>
       </div>
 
       <div className="space-y-4">
         {faqs.map((faq) => (
           <div
             key={faq.id}
-            className="border border-gray-100 rounded-3xl overflow-hidden bg-white shadow-sm"
+            className="border border-slate-100 dark:border-slate-800 rounded-3xl overflow-hidden bg-white dark:bg-slate-900 shadow-sm transition-colors duration-500"
           >
             <button
               onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
-              className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
+              className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-500"
             >
-              <span className="font-bold text-gray-900">{faq.question}</span>
+              <span className="font-bold text-slate-900 dark:text-slate-50">{faq.question}</span>
               {openId === faq.id ? (
-                <Minus className="w-5 h-5 text-indigo-600" />
+                <Minus className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
               ) : (
-                <Plus className="w-5 h-5 text-gray-400" />
+                <Plus className="w-5 h-5 text-slate-400 dark:text-slate-500" />
               )}
             </button>
             <AnimatePresence>
@@ -54,7 +54,7 @@ const FAQSection: React.FC = () => {
                   exit={{ height: 0, opacity: 0 }}
                   className="overflow-hidden"
                 >
-                  <div className="p-6 pt-0 text-gray-600 leading-relaxed">
+                  <div className="p-6 pt-0 text-slate-600 dark:text-slate-400 leading-relaxed transition-colors duration-500">
                     {faq.answer}
                   </div>
                 </motion.div>

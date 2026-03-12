@@ -233,18 +233,18 @@ const AdminDashboard: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-full">
+      <div className="flex items-center justify-center h-full transition-colors duration-500">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 transition-colors duration-500">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-white mb-2">Dashboard Overview</h1>
-          <p className="text-slate-500">Welcome back! Here's what's happening with Pixi Marts.</p>
+          <h1 className="text-3xl font-black text-slate-900 dark:text-white mb-2">Dashboard Overview</h1>
+          <p className="text-slate-500 dark:text-slate-400">Welcome back! Here's what's happening with Pixi Marts.</p>
         </div>
         <div className="flex gap-4">
           {products.length === 0 && (
@@ -266,16 +266,16 @@ const AdminDashboard: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="glass-dark p-6 rounded-3xl border border-slate-800"
+            className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-500"
           >
             <div className="flex items-center justify-between mb-4">
               <div className={`${stat.bg} ${stat.color} p-3 rounded-2xl`}>
                 <stat.icon className="w-6 h-6" />
               </div>
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Live</span>
+              <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Live</span>
             </div>
-            <p className="text-slate-400 text-sm font-medium mb-1">{stat.name}</p>
-            <h3 className="text-3xl font-black text-white">{stat.value}</h3>
+            <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">{stat.name}</p>
+            <h3 className="text-3xl font-black text-slate-900 dark:text-white">{stat.value}</h3>
           </motion.div>
         ))}
       </div>
@@ -284,7 +284,7 @@ const AdminDashboard: React.FC = () => {
       <div className="space-y-6">
         <div className="flex items-center gap-3">
           <div className="w-1 h-8 bg-indigo-500 rounded-full"></div>
-          <h2 className="text-2xl font-black text-white">Order Statistics</h2>
+          <h2 className="text-2xl font-black text-slate-900 dark:text-white">Order Statistics</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {orderStats.map((stat, i) => (
@@ -293,7 +293,7 @@ const AdminDashboard: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 + (i * 0.1) }}
-              className="glass-dark p-6 rounded-3xl border border-slate-800"
+              className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-500"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className={`${stat.bg} ${stat.color} p-3 rounded-2xl`}>
@@ -305,8 +305,8 @@ const AdminDashboard: React.FC = () => {
                   </span>
                 )}
               </div>
-              <p className="text-slate-400 text-sm font-medium mb-1">{stat.name}</p>
-              <h3 className="text-2xl font-black text-white">
+              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">{stat.name}</p>
+              <h3 className="text-2xl font-black text-slate-900 dark:text-white">
                 {stat.name === 'Total Earnings' ? (
                   <CountUp value={stat.value as number} />
                 ) : (
@@ -314,10 +314,10 @@ const AdminDashboard: React.FC = () => {
                 )}
               </h3>
               {stat.subValue && (
-                <p className="text-slate-500 text-[10px] mt-1 font-medium uppercase tracking-wider">{stat.subValue}</p>
+                <p className="text-slate-400 dark:text-slate-500 text-[10px] mt-1 font-medium uppercase tracking-wider">{stat.subValue}</p>
               )}
               {stat.percentage && (
-                <p className="text-slate-500 text-[10px] mt-1 font-medium uppercase tracking-wider">{stat.percentage} of total</p>
+                <p className="text-slate-400 dark:text-slate-500 text-[10px] mt-1 font-medium uppercase tracking-wider">{stat.percentage} of total</p>
               )}
             </motion.div>
           ))}
@@ -326,48 +326,48 @@ const AdminDashboard: React.FC = () => {
 
       {/* Recent Products */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-        <div className="xl:col-span-2 glass-dark rounded-[2.5rem] border border-slate-800 overflow-hidden">
-          <div className="p-8 border-b border-slate-800 flex items-center justify-between">
-            <h2 className="text-xl font-bold text-white flex items-center gap-3">
+        <div className="xl:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden transition-all duration-500">
+          <div className="p-8 border-b border-slate-50 dark:border-slate-800 flex items-center justify-between">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
               <Clock className="w-6 h-6 text-indigo-400" />
               Recent Products
             </h2>
-            <button className="text-indigo-400 text-sm font-bold flex items-center gap-2 hover:text-indigo-300 transition-colors">
+            <button className="text-indigo-600 dark:text-indigo-400 text-sm font-bold flex items-center gap-2 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
               View All <ArrowUpRight className="w-4 h-4" />
             </button>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="text-slate-500 text-xs font-bold uppercase tracking-widest border-b border-slate-800">
+                <tr className="text-slate-400 dark:text-slate-500 text-xs font-bold uppercase tracking-widest border-b border-slate-50 dark:border-slate-800">
                   <th className="px-8 py-4">Product</th>
                   <th className="px-8 py-4">Category</th>
                   <th className="px-8 py-4">Price</th>
                   <th className="px-8 py-4">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800">
+              <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
                 {products.slice(0, 5).map((product) => (
-                  <tr key={product.id} className="hover:bg-slate-800/50 transition-colors">
+                  <tr key={product.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                     <td className="px-8 py-4">
                       <div className="flex items-center gap-4">
                         {product.image && (
                           <img src={product.image} alt="" className="w-10 h-10 rounded-lg object-cover" />
                         )}
-                        <span className="font-bold text-white text-sm truncate max-w-[200px]">{product.title}</span>
+                        <span className="font-bold text-slate-900 dark:text-white text-sm truncate max-w-[200px]">{product.title}</span>
                       </div>
                     </td>
                     <td className="px-8 py-4">
                       <div className="flex gap-1">
                         {product.categories.slice(0, 1).map(cat => (
-                          <span key={cat} className="text-[10px] font-bold bg-slate-800 text-slate-400 px-2 py-1 rounded-md uppercase">
+                          <span key={cat} className="text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-2 py-1 rounded-md uppercase">
                             {cat}
                           </span>
                         ))}
                       </div>
                     </td>
                     <td className="px-8 py-4">
-                      <span className="font-bold text-indigo-400 text-sm">{formatPrice(product.salePrice)}</span>
+                      <span className="font-bold text-indigo-600 dark:text-indigo-400 text-sm">{formatPrice(product.salePrice)}</span>
                     </td>
                     <td className="px-8 py-4">
                       <div className="flex gap-2">
@@ -385,26 +385,26 @@ const AdminDashboard: React.FC = () => {
 
         {/* Quick Actions / Summary */}
         <div className="space-y-8">
-          <div className="glass-dark p-8 rounded-[2.5rem] border border-slate-800">
-            <h2 className="text-xl font-bold text-white mb-6">System Status</h2>
+          <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-500">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">System Status</h2>
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <span className="text-slate-400 text-sm">Firestore</span>
-                <span className="text-emerald-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <span className="text-slate-500 dark:text-slate-400 text-sm">Firestore</span>
+                <span className="text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
                   Connected
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400 text-sm">Storage</span>
-                <span className="text-emerald-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <span className="text-slate-500 dark:text-slate-400 text-sm">Storage</span>
+                <span className="text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
                   Connected
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400 text-sm">Auth</span>
-                <span className="text-emerald-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <span className="text-slate-500 dark:text-slate-400 text-sm">Auth</span>
+                <span className="text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
                   Secure
                 </span>

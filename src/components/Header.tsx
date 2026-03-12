@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../utils/utils';
 
 import UserAvatar from './UserAvatar';
+import ThemeToggle from './ThemeToggle';
 
 interface HeaderProps {
   onCartOpen: () => void;
@@ -42,7 +43,9 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 py-3',
-        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm' : 'bg-transparent'
+        isScrolled 
+          ? 'bg-white/80 dark:bg-slate-950/80 backdrop-blur-md shadow-sm' 
+          : 'bg-transparent'
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -65,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
                 href={link.path}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-gray-600 transition-colors hover:text-indigo-600"
+                className="text-sm font-medium text-slate-600 dark:text-slate-300 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
               >
                 {link.name}
               </a>
@@ -74,8 +77,10 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
                 key={link.name}
                 to={link.path}
                 className={cn(
-                  'text-sm font-medium transition-colors hover:text-indigo-600',
-                  location.pathname === link.path ? 'text-indigo-600' : 'text-gray-600'
+                  'text-sm font-medium transition-colors hover:text-indigo-600 dark:hover:text-indigo-400',
+                  location.pathname === link.path 
+                    ? 'text-indigo-600 dark:text-indigo-400' 
+                    : 'text-slate-600 dark:text-slate-300'
                 )}
               >
                 {link.name}
@@ -111,13 +116,15 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
 
         {/* Right Actions */}
         <div className="flex items-center gap-2 md:gap-4">
+          <ThemeToggle />
+
           <Link
             to={user ? "/profile" : "/login"}
             className={cn(
               "p-2 rounded-xl transition-all duration-300",
               location.pathname === (user ? "/profile" : "/login")
-                ? "bg-indigo-50 text-indigo-600"
-                : "text-gray-600 hover:bg-gray-50 hover:text-indigo-600"
+                ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
+                : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-600 dark:hover:text-indigo-400"
             )}
             title={user ? "Profile" : "Login"}
           >
@@ -130,18 +137,18 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
 
           <button
             onClick={onCartOpen}
-            className="relative p-2 text-gray-600 hover:text-indigo-600 transition-colors"
+            className="relative p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
           >
             <ShoppingCart className="w-6 h-6" />
             {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-indigo-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
+              <span className="absolute -top-1 -right-1 bg-indigo-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white dark:border-slate-950">
                 {totalItems}
               </span>
             )}
           </button>
 
           <button
-            className="md:hidden p-2 text-gray-600"
+            className="md:hidden p-2 text-slate-600 dark:text-slate-300"
             onClick={() => setIsMobileMenuOpen(true)}
           >
             <Menu className="w-6 h-6" />
@@ -158,19 +165,19 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 md:hidden"
+              className="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm z-50 md:hidden"
             />
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-3/4 max-w-sm bg-white z-50 shadow-2xl md:hidden flex flex-col p-6"
+              className="fixed top-0 right-0 bottom-0 w-3/4 max-w-sm bg-white dark:bg-slate-950 z-50 shadow-2xl md:hidden flex flex-col p-6"
             >
               <div className="flex items-center justify-between mb-8">
-                <span className="text-xl font-bold text-indigo-600">Menu</span>
+                <span className="text-xl font-bold text-indigo-600 dark:text-indigo-400">Menu</span>
                 <button onClick={() => setIsMobileMenuOpen(false)}>
-                  <X className="w-6 h-6 text-gray-500" />
+                  <X className="w-6 h-6 text-slate-500 dark:text-slate-400" />
                 </button>
               </div>
               <nav className="flex flex-col gap-6">
@@ -181,7 +188,7 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
                       href={link.path}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-lg font-medium text-gray-600 transition-colors"
+                      className="text-lg font-medium text-slate-600 dark:text-slate-300 transition-colors"
                     >
                       {link.name}
                     </a>
@@ -192,7 +199,9 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={cn(
                         'text-lg font-medium transition-colors',
-                        location.pathname === link.path ? 'text-indigo-600' : 'text-gray-600'
+                        location.pathname === link.path 
+                          ? 'text-indigo-600 dark:text-indigo-400' 
+                          : 'text-slate-600 dark:text-slate-300'
                       )}
                     >
                       {link.name}

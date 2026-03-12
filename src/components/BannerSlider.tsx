@@ -57,13 +57,13 @@ const BannerSlider: React.FC<BannerSliderProps> = ({ products }) => {
               <h2 className="text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
                 {products[currentIndex].title}
               </h2>
-              <p className="text-gray-300 text-lg mb-8 line-clamp-2 font-medium">
+              <p className="text-slate-300 text-lg mb-8 line-clamp-2 font-medium">
                 {products[currentIndex].description}
               </p>
               <div className="flex items-center gap-6">
                 <Link
                   to={`/product/${products[currentIndex].id}`}
-                  className="bg-white text-gray-900 px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-indigo-50 transition-all active:scale-95"
+                  className="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-indigo-700 transition-all active:scale-95 shadow-xl shadow-indigo-500/20"
                 >
                   <ShoppingCart className="w-5 h-5" /> Buy Now - {formatPrice(products[currentIndex].salePrice)}
                 </Link>
