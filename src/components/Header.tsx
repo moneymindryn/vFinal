@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
     { name: 'FB Page', path: 'https://facebook.com/piximarts', external: true },
   ];
 
-  const freeLink = { name: 'FREE', path: '/products?category=Free' };
+  const freeLink = { name: 'FREE 🎁', path: '/products?category=Free' };
 
   return (
     <header
@@ -92,9 +92,9 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
               animate={{
                 scale: [1, 1.05, 1],
                 boxShadow: [
-                  "0 0 0 0px rgba(79, 70, 229, 0)",
-                  "0 0 0 10px rgba(79, 70, 229, 0.1)",
-                  "0 0 0 0px rgba(79, 70, 229, 0)"
+                  "0 0 0 0px rgba(249, 115, 22, 0)",
+                  "0 0 0 10px rgba(249, 115, 22, 0.2)",
+                  "0 0 0 0px rgba(249, 115, 22, 0)"
                 ]
               }}
               transition={{
@@ -102,9 +102,8 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-black tracking-widest flex items-center gap-1.5 shadow-lg shadow-indigo-500/20"
+              className="bg-[#FF8C00] hover:bg-[#FFA500] text-white px-4 py-1.5 rounded-full text-xs font-black tracking-widest flex items-center justify-center shadow-lg shadow-orange-500/40 transition-colors"
             >
-              <Gift className="w-3.5 h-3.5" />
               {freeLink.name}
             </motion.div>
           </Link>
@@ -205,9 +204,8 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
                 <Link
                   to={freeLink.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="bg-indigo-600 text-white px-6 py-4 rounded-2xl font-black tracking-widest flex items-center justify-center gap-2 shadow-xl shadow-indigo-500/20"
+                  className="bg-[#FF8C00] active:bg-[#FFA500] text-white px-6 py-4 rounded-2xl font-black tracking-widest flex items-center justify-center gap-2 shadow-xl shadow-orange-500/20 transition-colors"
                 >
-                  <Gift className="w-5 h-5" />
                   {freeLink.name}
                 </Link>
               </nav>
