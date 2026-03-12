@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Menu, X, Store, User as UserIcon } from 'lucide-react';
+import { ShoppingCart, Menu, X, Store, User as UserIcon, Gift } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -35,6 +35,8 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
     { name: 'Contact', path: '/contact' },
     { name: 'FB Page', path: 'https://facebook.com/piximarts', external: true },
   ];
+
+  const freeLink = { name: 'FREE', path: '/products?category=Free' };
 
   return (
     <header
@@ -80,6 +82,32 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
               </Link>
             )
           ))}
+          
+          {/* Animated FREE Button */}
+          <Link
+            to={freeLink.path}
+            className="relative group"
+          >
+            <motion.div
+              animate={{
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  "0 0 0 0px rgba(79, 70, 229, 0)",
+                  "0 0 0 10px rgba(79, 70, 229, 0.1)",
+                  "0 0 0 0px rgba(79, 70, 229, 0)"
+                ]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-black tracking-widest flex items-center gap-1.5 shadow-lg shadow-indigo-500/20"
+            >
+              <Gift className="w-3.5 h-3.5" />
+              {freeLink.name}
+            </motion.div>
+          </Link>
         </nav>
 
         {/* Right Actions */}
@@ -172,6 +200,16 @@ const Header: React.FC<HeaderProps> = ({ onCartOpen }) => {
                     </Link>
                   )
                 ))}
+                
+                {/* Mobile FREE Button */}
+                <Link
+                  to={freeLink.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="bg-indigo-600 text-white px-6 py-4 rounded-2xl font-black tracking-widest flex items-center justify-center gap-2 shadow-xl shadow-indigo-500/20"
+                >
+                  <Gift className="w-5 h-5" />
+                  {freeLink.name}
+                </Link>
               </nav>
             </motion.div>
           </>

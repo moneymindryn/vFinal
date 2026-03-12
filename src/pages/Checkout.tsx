@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
-import { formatPrice, generateTrackingNumber } from '../utils/utils';
+import { formatPrice, generateTrackingNumber, cn } from '../utils/utils';
 import { Copy, Check, ArrowLeft, Wallet, CreditCard, ShoppingBag, CheckCircle2, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -24,6 +24,9 @@ const Checkout: React.FC = () => {
     phone: '',
     transactionId: '',
   });
+
+  const isFreeOrder = cart.length > 0 && cart.every(item => item.categories.includes('Free'));
+  const freeLink = isFreeOrder ? cart[0].freeLink : null;
 
   useEffect(() => {
     const unsubscribe = onSnapshot(doc(db, 'settings', 'general'), (docSnap) => {
@@ -70,10 +73,10 @@ const Checkout: React.FC = () => {
         customerName: formData.name,
         customerGmail: formData.gmail,
         customerPhone: formData.phone,
-        totalAmount: totalPrice,
-        paymentMethod,
-        transactionId: formData.transactionId,
-        status: 'Pending',
+        totalAmount: isFreeOrder ? 0 : totalPrice,
+        paymentMethod: isFreeOrder ? 'Free' : paymentMethod,
+        transactionId: isFreeOrder ? 'FREE_ACCESS' : formData.transactionId,
+        status: isFreeOrder ? 'Complete' : 'Pending',
         items: cart.map(item => ({
           productId: item.id,
           title: item.title,
@@ -85,6 +88,10 @@ const Checkout: React.FC = () => {
       };
 
       await addDoc(collection(db, 'orders'), orderData);
+      
+      if (isFreeOrder && freeLink) {
+        window.open(freeLink, '_blank');
+      }
       
       clearCart();
       setShowSuccess(true);
@@ -122,92 +129,108 @@ const Checkout: React.FC = () => {
                     <p className="text-xs text-gray-400 font-medium">Quantity: {item.quantity}</p>
                   </div>
                   <span className="text-sm font-bold text-gray-900 shrink-0">
-                    {formatPrice(item.salePrice * item.quantity)}
+                    {isFreeOrder ? 'FREE' : formatPrice(item.salePrice * item.quantity)}
                   </span>
                 </div>
               ))}
             </div>
             <div className="pt-6 border-t border-gray-100 flex justify-between items-center">
               <span className="text-lg font-bold text-gray-900">Total Amount</span>
-              <span className="text-2xl font-black text-indigo-600">{formatPrice(totalPrice)}</span>
+              <span className="text-2xl font-black text-indigo-600">{isFreeOrder ? 'FREE' : formatPrice(totalPrice)}</span>
             </div>
           </div>
 
-          <div className="bg-indigo-600 p-8 rounded-[2.5rem] text-white shadow-xl shadow-indigo-100">
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-              <Wallet className="w-6 h-6" />
-              Payment Instructions
-            </h3>
-            <div className="space-y-6">
-              <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
-                <p className="text-white/70 text-sm font-medium mb-2">Send Money to this number:</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-black">{adminNumber}</span>
-                  <button
-                    onClick={handleCopy}
-                    className="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
-                  >
-                    {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
-                  </button>
+          {!isFreeOrder && (
+            <div className="bg-indigo-600 p-8 rounded-[2.5rem] text-white shadow-xl shadow-indigo-100">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                <Wallet className="w-6 h-6" />
+                Payment Instructions
+              </h3>
+              <div className="space-y-6">
+                <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+                  <p className="text-white/70 text-sm font-medium mb-2">Send Money to this number:</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-black">{adminNumber}</span>
+                    <button
+                      onClick={handleCopy}
+                      className="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+                    >
+                      {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="space-y-4">
-                <div className="flex gap-3">
-                  <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</div>
-                  <p className="text-sm font-medium">Select your preferred payment method below.</p>
-                </div>
-                <div className="flex gap-3">
-                  <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</div>
-                  <p className="text-sm font-medium">Send <span className="font-black">{formatPrice(totalPrice)}</span> to the number above.</p>
-                </div>
-                <div className="flex gap-3">
-                  <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</div>
-                  <p className="text-sm font-medium">Copy the Transaction ID and fill the form.</p>
+                <div className="space-y-4">
+                  <div className="flex gap-3">
+                    <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold shrink-0">1</div>
+                    <p className="text-sm font-medium">Select your preferred payment method below.</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold shrink-0">2</div>
+                    <p className="text-sm font-medium">Send <span className="font-black">{formatPrice(totalPrice)}</span> to the number above.</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold shrink-0">3</div>
+                    <p className="text-sm font-medium">Copy the Transaction ID and fill the form.</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
+          
+          {isFreeOrder && (
+            <div className="bg-emerald-600 p-8 rounded-[2.5rem] text-white shadow-xl shadow-emerald-100">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                <CheckCircle2 className="w-6 h-6" />
+                Free Access
+              </h3>
+              <p className="text-emerald-50 font-medium">
+                This product is currently free! Just fill out your details and click "Get for Free" to receive your access link immediately.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Right: Form */}
         <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm h-fit">
           <h2 className="text-2xl font-black text-gray-900 mb-8">Complete Your Order</h2>
           
-          <div className="flex gap-4 mb-8">
-            <button
-              onClick={() => setPaymentMethod('bKash')}
-              className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl font-bold border-2 transition-all ${
-                paymentMethod === 'bKash'
-                  ? 'bg-pink-50 border-pink-500 text-pink-600'
-                  : 'bg-white border-gray-100 text-gray-400'
-              }`}
-            >
-              <CreditCard className="w-5 h-5" />
-              bKash
-            </button>
-            <button
-              onClick={() => setPaymentMethod('Nagad')}
-              className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl font-bold border-2 transition-all ${
-                paymentMethod === 'Nagad'
-                  ? 'bg-orange-50 border-orange-500 text-orange-600'
-                  : 'bg-white border-gray-100 text-gray-400'
-              }`}
-            >
-              <CreditCard className="w-5 h-5" />
-              Nagad
-            </button>
-            <button
-              onClick={() => setPaymentMethod('Rocket')}
-              className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl font-bold border-2 transition-all ${
-                paymentMethod === 'Rocket'
-                  ? 'bg-purple-50 border-purple-500 text-purple-600'
-                  : 'bg-white border-gray-100 text-gray-400'
-              }`}
-            >
-              <CreditCard className="w-5 h-5" />
-              Rocket
-            </button>
-          </div>
+          {!isFreeOrder && (
+            <div className="flex gap-4 mb-8">
+              <button
+                onClick={() => setPaymentMethod('bKash')}
+                className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl font-bold border-2 transition-all ${
+                  paymentMethod === 'bKash'
+                    ? 'bg-pink-50 border-pink-500 text-pink-600'
+                    : 'bg-white border-gray-100 text-gray-400'
+                }`}
+              >
+                <CreditCard className="w-5 h-5" />
+                bKash
+              </button>
+              <button
+                onClick={() => setPaymentMethod('Nagad')}
+                className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl font-bold border-2 transition-all ${
+                  paymentMethod === 'Nagad'
+                    ? 'bg-orange-50 border-orange-500 text-orange-600'
+                    : 'bg-white border-gray-100 text-gray-400'
+                }`}
+              >
+                <CreditCard className="w-5 h-5" />
+                Nagad
+              </button>
+              <button
+                onClick={() => setPaymentMethod('Rocket')}
+                className={`flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl font-bold border-2 transition-all ${
+                  paymentMethod === 'Rocket'
+                    ? 'bg-purple-50 border-purple-500 text-purple-600'
+                    : 'bg-white border-gray-100 text-gray-400'
+                }`}
+              >
+                <CreditCard className="w-5 h-5" />
+                Rocket
+              </button>
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -247,29 +270,36 @@ const Checkout: React.FC = () => {
                 placeholder="01XXX-XXXXXX"
               />
             </div>
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2">Transaction ID</label>
-              <input
-                required
-                type="text"
-                value={formData.transactionId}
-                onChange={(e) => setFormData({ ...formData, transactionId: e.target.value })}
-                className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-200 transition-all font-medium"
-                placeholder="Enter TxID from SMS"
-              />
-            </div>
+            {!isFreeOrder && (
+              <div>
+                <label className="block text-sm font-bold text-gray-700 mb-2">Transaction ID</label>
+                <input
+                  required
+                  type="text"
+                  value={formData.transactionId}
+                  onChange={(e) => setFormData({ ...formData, transactionId: e.target.value })}
+                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-50 focus:border-indigo-200 transition-all font-medium"
+                  placeholder="Enter TxID from SMS"
+                />
+              </div>
+            )}
             
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-bold text-lg hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 shadow-xl shadow-indigo-100 active:scale-[0.98] mt-8 disabled:opacity-50 disabled:cursor-not-allowed"
+              className={cn(
+                "w-full py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center gap-3 shadow-xl active:scale-[0.98] mt-8 disabled:opacity-50 disabled:cursor-not-allowed",
+                isFreeOrder 
+                  ? "bg-emerald-600 text-white hover:bg-emerald-700 shadow-emerald-100" 
+                  : "bg-indigo-600 text-white hover:bg-indigo-700 shadow-indigo-100"
+              )}
             >
               {isSubmitting ? (
                 <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               ) : (
-                <ShoppingBag className="w-6 h-6" />
+                isFreeOrder ? <CheckCircle2 className="w-6 h-6" /> : <ShoppingBag className="w-6 h-6" />
               )}
-              {isSubmitting ? 'Processing...' : 'Order Now'}
+              {isSubmitting ? 'Processing...' : (isFreeOrder ? 'Get for Free' : 'Order Now')}
             </button>
           </form>
         </div>
@@ -294,9 +324,11 @@ const Checkout: React.FC = () => {
               <div className="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 className="w-12 h-12 text-emerald-500" />
               </div>
-              <h2 className="text-3xl font-black text-gray-900 mb-4">Order Placed!</h2>
+              <h2 className="text-3xl font-black text-gray-900 mb-4">{isFreeOrder ? 'Success!' : 'Order Placed!'}</h2>
               <p className="text-gray-500 font-medium mb-8">
-                Your order has been placed! Wait for confirmation.
+                {isFreeOrder 
+                  ? 'Your free access has been processed. The link should have opened in a new tab.' 
+                  : 'Your order has been placed! Wait for confirmation.'}
               </p>
               <button
                 onClick={() => navigate('/my-orders')}

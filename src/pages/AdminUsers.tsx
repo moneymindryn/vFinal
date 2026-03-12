@@ -3,9 +3,11 @@ import { collection, onSnapshot, query, orderBy, doc, updateDoc, deleteDoc } fro
 import { db } from '../firebase';
 import { UserProfile } from '../types';
 import { motion } from 'framer-motion';
-import { Users, Shield, User as UserIcon, Mail, Calendar, Wallet, MessageSquare, Trash2 } from 'lucide-react';
+import { Users, Shield, User as UserIcon, Mail, Calendar, Wallet, MessageSquare, Trash2, Download } from 'lucide-react';
 import { formatPrice, formatDate } from '../utils/utils';
 import UserAvatar from '../components/UserAvatar';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 const AdminUsers: React.FC = () => {
   const [users, setUsers] = useState<UserProfile[]>([]);
@@ -83,6 +85,40 @@ const AdminUsers: React.FC = () => {
     window.open(`https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${message}`, '_blank');
   };
 
+  const exportUserReport = () => {
+    if (regularUsers.length === 0) {
+      alert('No user data available to export');
+      return;
+    }
+
+    const doc = new jsPDF();
+    const date = new Date().toLocaleDateString();
+
+    // Header
+    doc.setFontSize(18);
+    doc.text('Pixi Marts - Registered Users Report', 14, 20);
+    doc.setFontSize(10);
+    doc.text(`Report Date: ${date}`, 14, 28);
+
+    // Table
+    const tableData = regularUsers.map(user => [
+      user.displayName || 'N/A',
+      user.phoneNumber || 'N/A',
+      user.email || 'N/A'
+    ]);
+
+    autoTable(doc, {
+      startY: 35,
+      head: [['Name', 'Phone Number', 'Email Address']],
+      body: tableData,
+      theme: 'striped',
+      headStyles: { fillColor: [79, 70, 229] }, // Indigo-600
+      styles: { fontSize: 9 },
+    });
+
+    doc.save('Pixi_Marts_Users_Report.pdf');
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -99,6 +135,13 @@ const AdminUsers: React.FC = () => {
           <p className="text-slate-500">Manage registered users and their permissions.</p>
         </div>
         <div className="flex items-center gap-3">
+          <button
+            onClick={exportUserReport}
+            className="bg-indigo-600 text-white px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-2 hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/20"
+          >
+            <Download className="w-4 h-4" />
+            Export User Report
+          </button>
           <div className="flex bg-slate-800/50 p-1 rounded-xl border border-slate-700/50">
             <button
               onClick={() => setSortBy('spent')}

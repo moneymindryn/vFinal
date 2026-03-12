@@ -20,6 +20,7 @@ export interface Product {
   rating: number;
   reviewCount: number;
   variants?: ProductVariant[];
+  freeLink?: string;
   createdAt: Timestamp;
 }
 

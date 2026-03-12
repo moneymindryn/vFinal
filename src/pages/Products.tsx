@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard';
 import CategoryCard from '../components/CategoryCard';
 import SearchBar from '../components/SearchBar';
 import { Filter, LayoutGrid } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -13,6 +14,14 @@ const Products: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const qProducts = query(collection(db, 'products'), orderBy('createdAt', 'desc'));

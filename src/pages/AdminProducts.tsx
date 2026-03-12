@@ -45,6 +45,7 @@ const AdminProducts: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState('');
   const [variants, setVariants] = useState<{ id: string; name: string; regularPrice: string; salePrice: string }[]>([]);
+  const [freeLink, setFreeLink] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [productToDelete, setProductToDelete] = useState<Product | null>(null);
 
@@ -126,6 +127,7 @@ const AdminProducts: React.FC = () => {
       setFeatured(product.featured);
       setBanner(product.banner);
       setImagePreview(product.image);
+      setFreeLink(product.freeLink || '');
       setVariants(product.variants?.map(v => ({ ...v, regularPrice: v.regularPrice.toString(), salePrice: v.salePrice.toString() })) || []);
     } else {
       setEditingProduct(null);
@@ -136,6 +138,7 @@ const AdminProducts: React.FC = () => {
       setBanner(false);
       setImageFile(null);
       setImagePreview('');
+      setFreeLink('');
       setVariants([]);
     }
     setIsModalOpen(true);
@@ -290,6 +293,7 @@ const AdminProducts: React.FC = () => {
         banner,
         image: imageUrl,
         variants: processedVariants,
+        freeLink: selectedCategories.includes('Free') ? freeLink : null,
         rating: calculatedRating,
         reviewCount: calculatedReviewCount,
         createdAt: editingProduct?.createdAt || serverTimestamp(),
@@ -636,6 +640,25 @@ const AdminProducts: React.FC = () => {
                         ))}
                       </div>
                     </div>
+
+                    {selectedCategories.includes('Free') && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="space-y-2"
+                      >
+                        <label className="block text-xs font-bold text-indigo-400 uppercase tracking-widest mb-2 ml-1">Product Download/Access Link</label>
+                        <input 
+                          type="url"
+                          required
+                          value={freeLink}
+                          onChange={(e) => setFreeLink(e.target.value)}
+                          className="w-full bg-slate-900 border border-indigo-500/30 rounded-2xl py-4 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                          placeholder="https://example.com/download-link"
+                        />
+                        <p className="text-[10px] text-slate-500 ml-1 italic">This link will be provided to users immediately after they click "Get for Free".</p>
+                      </motion.div>
+                    )}
 
                     <div className="flex gap-4">
                       <button
